@@ -36,34 +36,3 @@
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("loginBtn").addEventListener("click", login);
     });
-</script>
-const SUPABASE_URL = "https://zatalafwwduwzpddtfje.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdGFsYWZ3d2R1d3pwZGR0ZmplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTk4MjYsImV4cCI6MjA1Njk5NTgyNn0.bL-BZMgyN1oC84PCowMsVcQ8kyJhsLLVfKr6jmGqKxU
-";
-
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-// Function to log an event
-async function logEvent(event) {
-    const { data, error } = await supabase
-        .from("logs")
-        .insert([
-            { event: event, timestamp: new Date().toISOString(), page_url: window.location.href }
-        ]);
-
-    if (error) {
-        console.error("Error logging event:", error.message);
-    } else {
-        console.log("Event logged:", data);
-    }
-}
-
-// Log when the page is loaded
-document.addEventListener("DOMContentLoaded", () => {
-    logEvent("Page Loaded");
-});
-
-// Example: Log button clicks
-document.getElementById("logButton")?.addEventListener("click", () => {
-    logEvent("Button Clicked");
-});
