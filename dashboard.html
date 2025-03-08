@@ -7,3 +7,23 @@ async function checkAuth() {
     }
 }
 checkAuth();
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+   const SUPABASE_URL = "https://https://zatalafwwduwzpddtfje.supabase.co";
+   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdGFsYWZ3d2R1d3pwZGR0ZmplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTk4MjYsImV4cCI6MjA1Njk5NTgyNn0.bL-BZMgyN1oC84PCowMsVcQ8kyJhsLLVfKr6jmGqKxU";
+   const supabase = supabase.createClient(zatalafwwduwzpddtfje.supabase.co, eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdGFsYWZ3d2R1d3pwZGR0ZmplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTk4MjYsImV4cCI6MjA1Njk5NTgyNn0.bL-BZMgyN1oC84PCowMsVcQ8kyJhsLLVfKr6jmGqKxU);
+
+   async function logEvent(event) {
+       await supabase.from("logs").insert([{ event: event, timestamp: new Date().toISOString(), page_url: window.location.href }]);
+   }
+
+   document.addEventListener("DOMContentLoaded", () => {
+       logEvent("Page Loaded");
+   });
+
+   document.getElementById("logBtn")?.addEventListener("click", () => {
+       logEvent("Button Clicked");
+   });
+</script>
